@@ -1,0 +1,27 @@
+{
+  "name": "basicbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doanviethung1009/StudyCodeBackEnd_0.git"
+  },
+  "keywords": [
+    "nodejs",
+    "react"
+  ],
+  "author": "hungdba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doanviethung1009/StudyCodeBackEnd_0/issues"
+  },
+  "homepage": "https://github.com/doanviethung1009/StudyCodeBackEnd_0#readme",
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}
