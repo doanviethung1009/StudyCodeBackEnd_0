@@ -1,7 +1,7 @@
-
-const express = require('express') //import express
-const path = require('path') //import path
 require('dotenv').config() // import dotenv
+const express = require('express') //import express
+const configViewEngine = require('./config/viewEngine')
+const webRoutes = require('./routes/web')
 
 
 
@@ -14,29 +14,17 @@ const hostname =  process.env.DB_HOST // init hostname
 
 
 //config template ejs engine 
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine','ejs')
+configViewEngine(app);
 
-// congig static files: css, image, js
-app.use(express.static(path.join(__dirname, 'public'))); //  "public" off of current is root
 
 
 
 
 //khai báo routes
-//req (request), res(response) là 2 object trong môi trường Node.js
-app.get('/', (req, res) => {
-  res.send('Hello World! test')
-})
+app.use('/', webRoutes)
+// app.use('/v1', webRoutes)
+// app.use('/v2', webRoutes)
 
-app.get('/abc', (req, res) => {
-    res.send('Hello World! abc')
-  })
-
-//call route to run view 
-app.get('/example', (req, res) => {
-    res.render('sample.ejs')
-  })
 
 //run server trên port đã khởi tạo trước đấy
 //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
