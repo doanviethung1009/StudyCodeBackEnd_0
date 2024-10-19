@@ -35,3 +35,32 @@
     background-color: #04AA6D;
     color: white;
 }
+
+.form-addNew {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+.form-addNew fieldset legend {
+    text-align: center;
+}
+
+.input-group {
+
+    padding: 10px;
+}
+
+.input-group input {
+    width: 400px;
+}
+
+.input-group input {
+    margin: 0 10px;
+}
+
+button {
+    border-radius: 5px;
+    width: 50px;
+    margin: 10px;
+}
