@@ -31,10 +31,25 @@ const getExample = (req, res) => {
 
 
 const postCreateUser = (req, res) => {
-  console.log('check req, res', req.body)
-  res.send('Create user success')
+  // let email = req.body.email;
+  // let name = req.body.name;
+  // let city = req.body.city;
+  let { email, name, city } = req.body;
+  console.log(email, name, city);
+
+  // Using placeholders
+  connection.query(
+    'INSERT INTO Persons(EMAIL,NAME,CITY) VALUES (?,?,?)',
+    [email, name, city],
+    function (err, results) {
+      console.log(results);
+      res.send(`Create user success ${email}`)
+    }
+  );
 
 }
+
+
 
 
 module.exports = { getHomepage, getAbc, getExample, postCreateUser }
