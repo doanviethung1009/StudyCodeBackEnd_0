@@ -1,5 +1,5 @@
 const express = require('express')
-const {getHomepage, getAbc, getExample} =  require('../controllers/homeController')
+const { getHomepage, getAbc, getExample, postCreateUser } = require('../controllers/homeController')
 const router = express.Router()
 
 
@@ -9,17 +9,20 @@ const router = express.Router()
 // router.get('/', (req, res) => {
 //     res.send('Hello World! test')
 //   })
-router.get('/',getHomepage)  
+router.get('/', getHomepage)
 
 // router.get('/abc', (req, res) => {
 //       res.send('Hello World! abc')
 //     })
 router.get('/abc', getAbc)
-  
-  //call route to run view 
+
+//call route to run view 
 // router.get('/example', (req, res) => {
 //       res.render('sample.ejs')
 //     })
-router.get('/example',getExample)
+router.get('/example', getExample)
 
-module.exports = router; // exprot router to use in app.js
+//create User
+router.post('/create-user', postCreateUser)
+
+module.exports = router; // exprot router to use in app.js 

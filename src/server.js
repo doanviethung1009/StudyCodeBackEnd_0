@@ -9,8 +9,9 @@ const connection = require('./config/database')
 
 const app = express() // tạo express application
 const port = process.env.BE_PORT || 8888; // init port
-const hostname =  process.env.BE_HOST // init hostname
-
+const hostname = process.env.BE_HOST // init hostname
+app.use(express.json()) // for json
+app.use(express.urlencoded({ extended: true })) // for form data
 
 // console.log('check env', process.env)
 

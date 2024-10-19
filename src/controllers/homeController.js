@@ -17,7 +17,7 @@ const getHomepage = (req, res) => {
   //       res.send(JSON.stringify(users))
   //     }
   //   );
-  return res.render('home.ejs')  
+  return res.render('home.ejs')
 
 }
 
@@ -30,4 +30,11 @@ const getExample = (req, res) => {
 }
 
 
-module.exports = { getHomepage, getAbc, getExample }
+const postCreateUser = (req, res) => {
+  console.log('check req, res', req.body)
+  res.send('Create user success')
+
+}
+
+
+module.exports = { getHomepage, getAbc, getExample, postCreateUser }
