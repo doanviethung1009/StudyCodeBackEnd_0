@@ -1,5 +1,6 @@
 const express = require('express')
-const { getHomepage, getAbc, getExample, postCreateUser, getCreatePage, getUpdatePage } = require('../controllers/homeController')
+const { getHomepage, getAbc, getExample, postCreateUser, getCreatePage, getUpdatePage
+    , postEditUser } = require('../controllers/homeController')
 const router = express.Router()
 
 
@@ -28,6 +29,7 @@ router.get('/create', getCreatePage)
 router.post('/create-user', postCreateUser)
 //update User with params
 router.get('/edit/:id', getUpdatePage)
+router.post('/edit-user', postEditUser)
 
 
 module.exports = router; // exprot router to use in app.js 

@@ -13,6 +13,10 @@ body {
     margin: 0;
 }
 
+.d-none {
+    display: none;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;

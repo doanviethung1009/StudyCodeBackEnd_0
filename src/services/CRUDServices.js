@@ -16,7 +16,19 @@ const getUserById = async (id) => {
 
 }
 
+const updateUser = async (id, email, name, city) => {
+    // console.log("id ", id, " email ", email, "name", name, "city", city);
+    let [results, fields] = await connection.query(`UPDATE Persons 
+                              set NAME = ?
+                              , CITY = ?
+                              WHERE ID = ? ;`, [name, city, id])
+    // console.log(">>> check data input: ", results)
+    // res.send(`Update user success ${email} with ${name} , ${city}`)
+    return results;
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
+    updateUser,
 }
