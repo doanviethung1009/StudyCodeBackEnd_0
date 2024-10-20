@@ -6,17 +6,11 @@ const { getAllUsers } = require('../services/CRUDServices')
 const getHomepage = async (req, res) => {
   //process data
   // call moongose model
-  //async await
-  // let users = [];
-  try {
 
-  } catch (e) {
-    console.log(e)
-  }
+  //move function go into Services
   // let [results, fields] = await connection.query('select * from Persons');
   // console.log(">>> check data results: ", { listUsers: results })
 
-  let results = await getAllUsers();
   //callback function
   // connection.query(
   //   'SELECT * FROM USERS',
@@ -29,6 +23,9 @@ const getHomepage = async (req, res) => {
   //     res.send(JSON.stringify(users))
   //   }
   // );
+
+  //call listUser from service
+  let results = await getAllUsers();
   console.log(">>> check data results: ", { listUsers: results })
   return res.render('home.ejs', { listUsers: results })
 
@@ -52,28 +49,20 @@ const postCreateUser = async (req, res) => {
   // let city = req.body.city;
   let { email, name, city } = req.body;
   console.log(email, name, city);
-
-  // Using placeholders
-  //call back function
-  // connection.query(
-  //   'INSERT INTO Persons(EMAIL,NAME,CITY) VALUES (?,?,?)',
-  //   [email, name, city],
-  //   function (err, results) {
-  //     console.log(results);
-  //     res.send(`Create user success ${email}`)
-  //   }
-  // );
-  // connection.query()
-  //async await
-
   let [results, fields] = await connection.query('INSERT INTO Persons(EMAIL,NAME,CITY) VALUES (?,?,?)',
     [email, name, city])
   console.log(">>> check data input: ", results)
   res.send(`Create user success ${email}`)
+}
 
+const getUpdatePage = async (req, res) => {
+  res.render('edit.ejs')
 }
 
 
 
 
-module.exports = { getHomepage, getAbc, getExample, postCreateUser, getCreatePage }
+
+
+
+module.exports = { getHomepage, getAbc, getExample, postCreateUser, getCreatePage, getUpdatePage }
