@@ -26,6 +26,7 @@ router.get('/example', getExample)
 
 router.get('/create', getCreatePage)
 router.post('/create-user', postCreateUser)
+//update User with params
 router.get('/edit/:id', getUpdatePage)
 
 
