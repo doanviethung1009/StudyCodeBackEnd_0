@@ -82,34 +82,63 @@
     </style>
 
     <div class="w3-container">
-        <%= JSON.stringify(listUsers) %>
-            <table class="w3-table">
+        <!-- <%= JSON.stringify(listUsers) %> -->
+        <table class="w3-table">
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+            <!-- method 1: for .length -->
+            <!-- <% for (let i=0; i < listUsers.length; i++) { %>
                 <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Actions</th>
+
+                    <td>
+                        <%= listUsers[i].ID %>
+                    </td>
+                    <td>
+                        <%= listUsers[i].EMAIL %>
+                    </td>
+                    <td>
+                        <%= listUsers[i].NAME %>
+                    </td>
+                    <td>
+                        <%= listUsers[i].CITY %>
+                    </td>
+                    <td>
+                        <button>edit</button>
+                        <button>delete</button>
+                    </td>
                 </tr>
+                <%} %> -->
+
+            <!-- method 2: forEach -->
+            <% listUsers.forEach(function(user,index) { %>
                 <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                    <td>50</td>
+
+                    <td>
+                        <%= user.ID %>
+                            <!-- - <%=index%> -->
+                    </td>
+                    <td>
+                        <%= user.EMAIL %>
+                    </td>
+                    <td>
+                        <%= user.NAME %>
+                    </td>
+                    <td>
+                        <%= user.CITY %>
+                    </td>
+                    <td>
+                        <button>edit</button>
+                        <button>delete</button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td>
-                    <td>94</td>
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Adam</td>
-                    <td>Johnson</td>
-                    <td>67</td>
-                    <td>67</td>
-                </tr>
-            </table>
+                <% }); %>
+
+        </table>
     </div>
 
     <div class="form-addNew">
