@@ -26,7 +26,7 @@ router.get('/example', getExample)
 
 router.get('/create', getCreatePage)
 router.post('/create-user', postCreateUser)
-router.get('/edit', getUpdatePage)
+router.get('/edit/:id', getUpdatePage)
 
 
 module.exports = router; // exprot router to use in app.js 

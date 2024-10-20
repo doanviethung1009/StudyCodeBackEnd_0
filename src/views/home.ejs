@@ -14,7 +14,7 @@
         <!-- tag a such as method get api in BE -->
         <a class="active" href="/">Home</a>
         <a href="/create">Create</a>
-        <a href="/edit">Edit</a>
+        <!-- <a href="/edit">Edit</a> -->
     </div>
 
     <div class="w3-container">
@@ -68,7 +68,7 @@
                         <%= user.CITY %>
                     </td>
                     <td>
-                        <a href="/edit">edit</a>
+                        <a href="/edit/<%= user.ID %>">edit</a>
                         <button>delete</button>
                     </td>
                 </tr>
