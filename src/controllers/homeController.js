@@ -1,4 +1,5 @@
 const connection = require('../config/database')
+const { getAllUsers } = require('../services/CRUDServices')
 
 
 
@@ -7,13 +8,15 @@ const getHomepage = async (req, res) => {
   // call moongose model
   //async await
   // let users = [];
-  // try {
-  //   const [row, fields] = await connection.query('select * from Persons');
-  //   console.log(">>> check data ", row, fields)
-  // } catch (e) {
-  //   console.log(e)
-  // }
+  try {
 
+  } catch (e) {
+    console.log(e)
+  }
+  // let [results, fields] = await connection.query('select * from Persons');
+  // console.log(">>> check data results: ", { listUsers: results })
+
+  let results = await getAllUsers();
   //callback function
   // connection.query(
   //   'SELECT * FROM USERS',
@@ -26,7 +29,8 @@ const getHomepage = async (req, res) => {
   //     res.send(JSON.stringify(users))
   //   }
   // );
-  return res.render('home.ejs')
+  console.log(">>> check data results: ", { listUsers: results })
+  return res.render('home.ejs', { listUsers: results })
 
 }
 

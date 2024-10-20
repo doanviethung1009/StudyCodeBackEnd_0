@@ -58,6 +58,13 @@
             width: 100%;
         }
 
+
+        th {
+            font-size: 25px;
+            font-weight: 600;
+            padding-bottom: 10px;
+        }
+
         th,
         td {
             padding: 8px;
@@ -75,33 +82,34 @@
     </style>
 
     <div class="w3-container">
-
-        <table class="w3-table">
-            <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>City</th>
-            </tr>
-            <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-                <td>94</td>
-            </tr>
-            <tr>
-                <td>Adam</td>
-                <td>Johnson</td>
-                <td>67</td>
-                <td>67</td>
-            </tr>
-        </table>
+        <%= JSON.stringify(listUsers) %>
+            <table class="w3-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td>Smith</td>
+                    <td>50</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>Eve</td>
+                    <td>Jackson</td>
+                    <td>94</td>
+                    <td>94</td>
+                </tr>
+                <tr>
+                    <td>Adam</td>
+                    <td>Johnson</td>
+                    <td>67</td>
+                    <td>67</td>
+                </tr>
+            </table>
     </div>
 
     <div class="form-addNew">
