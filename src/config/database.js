@@ -1,5 +1,7 @@
-// Get the client
-const mysql = require('mysql2');
+// Get the client for callback
+//const mysql = require('mysql2');
+// get the client for promise
+const mysql = require('mysql2/promise');
 require('dotenv').config() // import dotenv
 
 

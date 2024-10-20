@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Create User</title>
     <!-- call external css  -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -43,8 +43,8 @@
 <body>
     <div class="topnav">
         <!-- tag a such as method get api in BE -->
-        <a class="active" href="/">Home</a>
-        <a href="/create">Create</a>
+        <a href="/">Home</a>
+        <a class="active" href="/create">Create</a>
 
     </div>
 
@@ -52,61 +52,10 @@
         <h2>Top Navigation Example</h2>
         <p>Some content..</p>
     </div> -->
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th,
-        td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:hover {
-            background-color: coral;
-        }
-
-        .w3-container {
-            padding: 10px 15px;
-        }
-    </style>
-
-    <div class="w3-container">
-
-        <table class="w3-table">
-            <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>City</th>
-            </tr>
-            <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-                <td>94</td>
-            </tr>
-            <tr>
-                <td>Adam</td>
-                <td>Johnson</td>
-                <td>67</td>
-                <td>67</td>
-            </tr>
-        </table>
-    </div>
 
     <div class="form-addNew">
         <!-- method="post" -->
-        <!-- <form action="/create-user" method="get">
+        <form action="/create-user" method="post">
             <fieldset>
                 <legend>Form add new users:</legend>
                 <div class="input-group">
@@ -127,7 +76,7 @@
                 </div>
                 <br>
             </fieldset>
-        </form> -->
+        </form>
 
     </div>
 

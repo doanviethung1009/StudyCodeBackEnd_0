@@ -1,5 +1,5 @@
 const express = require('express')
-const { getHomepage, getAbc, getExample, postCreateUser } = require('../controllers/homeController')
+const { getHomepage, getAbc, getExample, postCreateUser, getCreatePage } = require('../controllers/homeController')
 const router = express.Router()
 
 
@@ -23,6 +23,9 @@ router.get('/abc', getAbc)
 router.get('/example', getExample)
 
 //create User
+
+router.get('/create', getCreatePage)
 router.post('/create-user', postCreateUser)
+
 
 module.exports = router; // exprot router to use in app.js 
