@@ -1,6 +1,7 @@
 const express = require('express')
 const { getHomepage, getAbc, getExample, postCreateUser, getCreatePage, getUpdatePage
-    , postEditUser, postDeleteUser, postHandleDeleteUser } = require('../controllers/homeController')
+    , postEditUser, postDeleteUser, postHandleDeleteUser,
+    postTruncateTable } = require('../controllers/homeController')
 const router = express.Router()
 
 
@@ -33,5 +34,8 @@ router.post('/edit-user', postEditUser)
 //delete user 
 router.post('/delete-user/:id', postDeleteUser)
 router.post('/delete-user', postHandleDeleteUser)
+
+//truncate
+router.post('/truncate', postTruncateTable)
 
 module.exports = router; // export router to use in app.js 

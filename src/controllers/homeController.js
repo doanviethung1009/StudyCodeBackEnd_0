@@ -1,5 +1,5 @@
 const connection = require('../config/database')
-const { getAllUsers, getUserById, updateUser, deleteUser } = require('../services/CRUDServices')
+const { getAllUsers, getUserById, updateUser, deleteUser, createUser } = require('../services/CRUDServices')
 
 
 
@@ -49,10 +49,11 @@ const postCreateUser = async (req, res) => {
   // let city = req.body.city;
   let { email, name, city } = req.body;
   console.log(email, name, city);
-  let [results, fields] = await connection.query('INSERT INTO Persons(EMAIL,NAME,CITY) VALUES (?,?,?)',
-    [email, name, city])
-  console.log(">>> check data input: ", results)
-  res.send(`Create user success ${email}`)
+  await createUser(email, name, city)
+  res.redirect('/')
+
+  // console.log(">>> check data input: ", results)
+  // res.send(`Create user success ${email}`)
 }
 
 const getUpdatePage = async (req, res) => {
@@ -86,10 +87,15 @@ const postDeleteUser = async (req, res) => {
 }
 
 const postHandleDeleteUser = async (req, res) => {
-  console.log("check data id ", req.params.id)
-  const userId = req.params.id;
+  // console.log("check data id ", req.body.id)
+  const userId = req.body.id;
   let a = await deleteUser(userId)
-  console.log(">>> check a ", a)
+  // console.log(">>> check a ", a)
+  res.redirect('/')
+}
+
+const postTruncateTable = async (req, res) => {
+  let [results, fields] = await connection.query('TRUNCATE TABLE Persons')
   res.redirect('/')
 }
 
@@ -102,5 +108,5 @@ const postHandleDeleteUser = async (req, res) => {
 module.exports = {
   getHomepage, getAbc, getExample,
   postCreateUser, getCreatePage, getUpdatePage, postEditUser,
-  postDeleteUser, postHandleDeleteUser
+  postDeleteUser, postHandleDeleteUser, postTruncateTable
 }
