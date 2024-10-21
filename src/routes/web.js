@@ -1,6 +1,6 @@
 const express = require('express')
 const { getHomepage, getAbc, getExample, postCreateUser, getCreatePage, getUpdatePage
-    , postEditUser } = require('../controllers/homeController')
+    , postEditUser, postDeleteUser, postHandleDeleteUser } = require('../controllers/homeController')
 const router = express.Router()
 
 
@@ -30,6 +30,8 @@ router.post('/create-user', postCreateUser)
 //update User with params
 router.get('/edit/:id', getUpdatePage)
 router.post('/edit-user', postEditUser)
+//delete user 
+router.post('/delete-user/:id', postDeleteUser)
+router.post('/delete-user', postHandleDeleteUser)
 
-
-module.exports = router; // exprot router to use in app.js 
+module.exports = router; // export router to use in app.js 

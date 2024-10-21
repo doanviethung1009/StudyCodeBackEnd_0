@@ -13,6 +13,7 @@ body {
     margin: 0;
 }
 
+/* hidden tag */
 .d-none {
     display: none;
 }
