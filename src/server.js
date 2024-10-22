@@ -4,7 +4,8 @@ const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
 const mongoose = require('mongoose')
-
+const Kitten = require('./models/Kitten')
+const dog = require('./models/Dog')
 
 
 
@@ -39,15 +40,14 @@ app.use('/', webRoutes)
 // app.use('/v2', webRoutes)
 
 
-//name database which is test is defaullt
-//create schema
-const kittySchema = new mongoose.Schema({
-  name: String
-});
-const Kitten = mongoose.model('Kitten', kittySchema);
+//declare variable to call models and save data 
 const silence = new Kitten({ name: 'Silence' });
 silence.save();
+const dog1 = new dog({ name: 'abc' });
+dog1.save();
 
+
+//validate connection and start application node js for be
 //js self function 
 ; (
   // arrow function
