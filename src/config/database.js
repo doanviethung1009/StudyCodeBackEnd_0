@@ -31,6 +31,8 @@ const mongoose = require('mongoose')
 //   keepAliveInitialDelay: 0,
 // });
 
+
+//set connection for mongo
 const dbState = [{
   value: 0,
   label: "disconnected"
@@ -53,7 +55,14 @@ const dbState = [{
 const connection = async () => {
 
   try {
-    await mongoose.connect('mongodb://root:123456@127.0.0.1:27018/');
+    const options = {
+      user: process.env.DB_MG_USER,
+      pass: process.env.DB_MG_PASSWORD,
+
+
+    }
+    // connection of mongo db
+    await mongoose.connect(process.env.DB_MG_HOST, options);
     const state = Number(mongoose.connection.readyState);
     console.log(dbState.find(f => f.value == state).label, "to db"); // connected to db
   } catch (error) {

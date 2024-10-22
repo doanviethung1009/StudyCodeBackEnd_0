@@ -34,15 +34,22 @@ configViewEngine(app);
 
 //khai báo routes
 app.use('/', webRoutes)
-// app.use('/v1', webRoutes)
-// app.use('/v2', webRoutes)
+  // app.use('/v1', webRoutes)
+  // app.use('/v2', webRoutes)
 
-//test connection
-connection()
+  //test connection
+
+  //js self function 
+  ; (
+    // arrow function
+    async () => {
+      await connection()
+      //run server trên port đã khởi tạo trước đấy
+      //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
+      app.listen(port, hostname, () => {
+        console.log(`Example app listening on host ${hostname} port ${port}`)
+      })
+    }
+  )()
 
 
-//run server trên port đã khởi tạo trước đấy
-//nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
-app.listen(port, hostname, () => {
-  console.log(`Example app listening on host ${hostname} port ${port}`)
-})
