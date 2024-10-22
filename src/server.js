@@ -4,8 +4,7 @@ const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
 const mongoose = require('mongoose')
-const Kitten = require('./models/Kitten')
-const dog = require('./models/Dog')
+
 
 
 
@@ -36,30 +35,30 @@ configViewEngine(app);
 
 //khai báo routes
 app.use('/', webRoutes)
-// app.use('/v1', webRoutes)
-// app.use('/v2', webRoutes)
+  // app.use('/v1', webRoutes)
+  // app.use('/v2', webRoutes)
 
 
-//declare variable to call models and save data 
-const silence = new Kitten({ name: 'Silence' });
-silence.save();
-const dog1 = new dog({ name: 'abc' });
-dog1.save();
+  //declare variable to call models and save data 
+  // const silenceData = new Kitten({ name: 'Silence' });
+  // silenceData.save();
+  // const dogData = new dog({ name: 'abc' });
+  // dogData.save();
 
 
-//validate connection and start application node js for be
-//js self function 
-; (
-  // arrow function
-  async () => {
-    //test connection
-    await connection()
-    //run server trên port đã khởi tạo trước đấy
-    //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
-    app.listen(port, hostname, () => {
-      console.log(`Example app listening on host ${hostname} port ${port}`)
-    })
-  }
-)()
+  //validate connection and start application node js for be
+  //js self function 
+  ; (
+    // arrow function
+    async () => {
+      //test connection
+      await connection()
+      //run server trên port đã khởi tạo trước đấy
+      //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
+      app.listen(port, hostname, () => {
+        console.log(`Example app listening on host ${hostname} port ${port}`)
+      })
+    }
+  )()
 
 

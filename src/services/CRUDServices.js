@@ -1,4 +1,5 @@
-const connection = require('../config/database')
+const connection = require('../config/database');
+const User = require('../models/Users');
 
 const getAllUsers = async () => {
     let [results, fields] = await connection.query('select * from Persons');
@@ -17,8 +18,42 @@ const getUserById = async (id) => {
 }
 
 const createUser = async (email, name, city) => {
-    let [results, fields] = await connection.query('INSERT INTO Persons(EMAIL,NAME,CITY) VALUES (?,?,?)',
-        [email, name, city])
+    // let [results, fields] = await connection.query('INSERT INTO Persons(EMAIL,NAME,CITY) VALUES (?,?,?)',
+    //     [email, name, city])
+
+    // input data come into database mongo
+    //method 1 default input:
+    // const userData = new User({ email: email, name: name, city: city })
+    //de-structuring method 1:
+    // const userData = new User({ email, name, city })
+    // userData.save();
+
+    //mehtod 2:
+
+
+    // User.create({
+    //     email: email,
+    //     name: name,
+    //     city: city
+    // })
+
+    //method 2 de-structuring:
+    // User.create({ email, name, city })
+
+    // mehtod 3:
+    new Promise(async (resolve, reject) => {
+        try {
+            if (!email || !name || !city) {
+                throw new Error('Missing required parameters')
+            }
+            let results = User.create({ email, name, city });
+            resolve(results)
+        } catch (e) {
+            reject(e)
+        }
+
+    })
+
 }
 
 const updateUser = async (id, email, name, city) => {

@@ -1,6 +1,6 @@
 const connection = require('../config/database')
 const { getAllUsers, getUserById, updateUser, deleteUser, createUser } = require('../services/CRUDServices')
-
+const User = require('../models/Users')
 
 
 const getHomepage = async (req, res) => {
@@ -25,8 +25,9 @@ const getHomepage = async (req, res) => {
   // );
 
   //call listUser from service
-  let results = await getAllUsers();
+  // let results = await getAllUsers();
   // console.log(">>> check data results: ", { listUsers: results })
+  let results = []
   return res.render('home.ejs', { listUsers: results })
 
 }
@@ -47,10 +48,16 @@ const postCreateUser = async (req, res) => {
   // let email = req.body.email;
   // let name = req.body.name;
   // let city = req.body.city;
-  let { email, name, city } = req.body;
-  console.log(email, name, city);
-  await createUser(email, name, city)
-  res.redirect('/')
+  try {
+    let { email, name, city } = req.body;
+    console.log(email, name, city);
+    await createUser(email, name, city)
+    res.redirect('/')
+
+  } catch (e) {
+    console.log(e)
+    return res.send('An error occurred')
+  }
 
   // console.log(">>> check data input: ", results)
   // res.send(`Create user success ${email}`)
