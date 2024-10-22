@@ -50,22 +50,27 @@
                 </tr>
                 <%} %> -->
 
-            <!-- method 2: forEach -->
+            <!-- method 2: forEach  for mysql database user.ID, user.EMAIL, user.NAME, user.CITY -->
+
+            <!-- method 3: forEach  for mysql database-->
             <% listUsers.forEach(function(user,index) { %>
                 <tr>
 
                     <td>
-                        <%= user.ID %>
+                        <%= user._id %>
                             <!-- - <%=index%> -->
                     </td>
                     <td>
-                        <%= user.EMAIL %>
+                        <%= user.email %>
                     </td>
                     <td>
-                        <%= user.NAME %>
+                        <%= user.name %>
                     </td>
                     <td>
-                        <%= user.CITY %>
+                        <%= user.city %>
+                    </td>
+                    <td>
+                        <%= user.date %>
                     </td>
                     <td>
                         <a href="/edit/<%= user.ID %>">edit</a>
@@ -76,6 +81,7 @@
                     </td>
                 </tr>
                 <% }); %>
+
 
         </table>
         <form class="truncate-table" action="/truncate" method="POST">

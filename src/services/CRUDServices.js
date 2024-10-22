@@ -2,8 +2,12 @@ const connection = require('../config/database');
 const User = require('../models/Users');
 
 const getAllUsers = async () => {
-    let [results, fields] = await connection.query('select * from Persons');
-    return results;
+    // let [results, fields] = await connection.query('select * from Persons');
+    // return results;
+
+    //mongo:
+    let listUsers = await User.find({});
+    return listUsers;
 }
 
 const getUserById = async (id) => {

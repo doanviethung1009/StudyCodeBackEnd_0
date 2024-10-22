@@ -25,10 +25,11 @@ const getHomepage = async (req, res) => {
   // );
 
   //call listUser from service
-  // let results = await getAllUsers();
-  // console.log(">>> check data results: ", { listUsers: results })
-  let results = []
-  return res.render('home.ejs', { listUsers: results })
+  let results = await getAllUsers();
+  console.log(">>> check data results: ", results)
+  //let results = []
+
+  return res.render('home.ejs', { listUsers: results }) // đưa dữ liệu vào trong file ejs
 
 }
 
@@ -68,7 +69,7 @@ const getUpdatePage = async (req, res) => {
   const userId = req.params.id;
   // console.log("check  userid: ", userId)
   let user = await getUserById(userId);
-  console.log("check data user with userid: ", user)
+  // console.log("check data user with userid: ", user)
 
   res.render('edit.ejs', { userEdit: user })
 }
