@@ -3,6 +3,7 @@ const express = require('express') //import express
 const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
+const mongoose = require('mongoose')
 
 
 
@@ -34,22 +35,31 @@ configViewEngine(app);
 
 //khai báo routes
 app.use('/', webRoutes)
-  // app.use('/v1', webRoutes)
-  // app.use('/v2', webRoutes)
+// app.use('/v1', webRoutes)
+// app.use('/v2', webRoutes)
 
-  //test connection
 
-  //js self function 
-  ; (
-    // arrow function
-    async () => {
-      await connection()
-      //run server trên port đã khởi tạo trước đấy
-      //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
-      app.listen(port, hostname, () => {
-        console.log(`Example app listening on host ${hostname} port ${port}`)
-      })
-    }
-  )()
+//name database which is test is defaullt
+//create schema
+const kittySchema = new mongoose.Schema({
+  name: String
+});
+const Kitten = mongoose.model('Kitten', kittySchema);
+const silence = new Kitten({ name: 'Silence' });
+silence.save();
+
+//js self function 
+; (
+  // arrow function
+  async () => {
+    //test connection
+    await connection()
+    //run server trên port đã khởi tạo trước đấy
+    //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
+    app.listen(port, hostname, () => {
+      console.log(`Example app listening on host ${hostname} port ${port}`)
+    })
+  }
+)()
 
 

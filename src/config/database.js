@@ -58,8 +58,7 @@ const connection = async () => {
     const options = {
       user: process.env.DB_MG_USER,
       pass: process.env.DB_MG_PASSWORD,
-
-
+      dbName: process.env.DB_MG_NAME,
     }
     // connection of mongo db
     await mongoose.connect(process.env.DB_MG_HOST, options);
