@@ -10,15 +10,20 @@ const getAllUsers = async () => {
     return listUsers;
 }
 
-const getUserById = async (id) => {
-    let [results, fields] = await connection.query('SELECT * FROM Persons WHERE ID = ?', [id])
-    if (results && results.length > 0) {
-        let user = results[0]
-        return user;
-    } else {
-        { }
-    }
+const getUserById = async (_id) => {
+    //mysql
+    // let [results, fields] = await connection.query('SELECT * FROM Persons WHERE ID = ?', [id])
+    // if (results && results.length > 0) {
+    //     let user = results[0]
+    //     return user;
+    // } else {
+    //     { }
+    // }
 
+    //mongo:
+    let user = await User.findById({ _id }).exec();
+    console.log(user);
+    return user;
 }
 
 const createUser = async (email, name, city) => {
@@ -49,9 +54,10 @@ const createUser = async (email, name, city) => {
         try {
             if (!email || !name || !city) {
                 throw new Error('Missing required parameters')
+            } else {
+                let results = User.create({ email, name, city });
+                resolve(results)
             }
-            let results = User.create({ email, name, city });
-            resolve(results)
         } catch (e) {
             reject(e)
         }
@@ -61,20 +67,42 @@ const createUser = async (email, name, city) => {
 }
 
 const updateUser = async (id, email, name, city) => {
-    // console.log("id ", id, " email ", email, "name", name, "city", city);
-    let [results, fields] = await connection.query(`UPDATE Persons 
-                              set NAME = ?
-                              , CITY = ?
-                              WHERE ID = ? ;`, [name, city, id])
-    // console.log(">>> check data input: ", results)
-    // res.send(`Update user success ${email} with ${name} , ${city}`)
-    return results;
+    // for mysql:
+    // // console.log("id ", id, " email ", email, "name", name, "city", city);
+    // let [results, fields] = await connection.query(`UPDATE Persons
+    //                           set NAME = ?
+    //                           , CITY = ?
+    //                           WHERE ID = ? ;`, [name, city, id])
+    // // console.log(">>> check data input: ", results)
+    // // res.send(`Update user success ${email} with ${name} , ${city}`)
+    // return results;
+
+
+    //  for mongo:
+    new Promise(async (resolve, reject) => {
+        try {
+            if (!email || !name || !city) {
+                throw new Error('Missing required parameters')
+            }
+            let results = await User.findByIdAndUpdate({ _id: id }, { email, name, city }).exec();
+            resolve(results)
+        } catch (e) {
+            reject(e)
+        }
+    }
+    )
+    // let userUdate = await User.findByIdAndUpdate({ _id: id }, { email, name, city }).exec();
+    // await User.findByIdAndUpdate({ _id: id }, { email, name, city })
 }
 
 const deleteUser = async (id) => {
+    //for mysql:
     // console.log("check id ", id)
-    let [results, fields] = await connection.query('DELETE FROM Persons where ID = ? ;', [id])
-    return results
+    // let [results, fields] = await connection.query('DELETE FROM Persons where ID = ? ;', [id])
+    // return results
+
+    //for mongo:
+    await User.findByIdAndDelete({ _id: id })
 }
 
 module.exports = {

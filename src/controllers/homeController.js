@@ -67,7 +67,7 @@ const postCreateUser = async (req, res) => {
 const getUpdatePage = async (req, res) => {
   // console.log(">>> check req: ", req.params)
   const userId = req.params.id;
-  // console.log("check  userid: ", userId)
+  console.log("check  userid: ", userId)
   let user = await getUserById(userId);
   // console.log("check data user with userid: ", user)
 
@@ -103,7 +103,10 @@ const postHandleDeleteUser = async (req, res) => {
 }
 
 const postTruncateTable = async (req, res) => {
-  let [results, fields] = await connection.query('TRUNCATE TABLE Persons')
+  // for mysql:
+  // let [results, fields] = await connection.query('TRUNCATE TABLE Persons')
+  // for mongodb:
+  await User.deleteMany({})
   res.redirect('/')
 }
 

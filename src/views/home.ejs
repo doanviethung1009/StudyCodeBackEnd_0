@@ -52,7 +52,7 @@
 
             <!-- method 2: forEach  for mysql database user.ID, user.EMAIL, user.NAME, user.CITY -->
 
-            <!-- method 3: forEach  for mysql database-->
+            <!-- method 3: forEach  for mongo database-->
             <% listUsers.forEach(function(user,index) { %>
                 <tr>
 
@@ -73,8 +73,8 @@
                         <%= user.date %>
                     </td>
                     <td>
-                        <a href="/edit/<%= user.ID %>">edit</a>
-                        <form action="/delete-user/<%=user.ID %>" method="POST">
+                        <a href="/edit/<%= user._id %>">edit</a>
+                        <form action="/delete-user/<%=user._id %>" method="POST">
                             <button>delete</button>
                         </form>
 
