@@ -21,9 +21,19 @@ const getUserById = async (_id) => {
     // }
 
     //mongo:
+    // new Promise(async (resolve, reject) => {
+    // try {
+    //     console.log('check id:', _id)
+
+    // } catch (error) {
+    //     reject(error);
+    // }
+
+    // })
     let user = await User.findById({ _id }).exec();
-    console.log(user);
+    // console.log('check user:', user)
     return user;
+
 }
 
 const createUser = async (email, name, city) => {
@@ -56,6 +66,7 @@ const createUser = async (email, name, city) => {
                 throw new Error('Missing required parameters')
             } else {
                 let results = User.create({ email, name, city });
+                // console.log('check results:', results)
                 resolve(results)
             }
         } catch (e) {
@@ -83,9 +94,10 @@ const updateUser = async (id, email, name, city) => {
         try {
             if (!email || !name || !city) {
                 throw new Error('Missing required parameters')
+            } else {
+                let results = await User.findByIdAndUpdate({ _id: id }, { email, name, city }).exec();
+                console.log('check results:', results)
             }
-            let results = await User.findByIdAndUpdate({ _id: id }, { email, name, city }).exec();
-            resolve(results)
         } catch (e) {
             reject(e)
         }
