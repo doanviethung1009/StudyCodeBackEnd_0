@@ -4,6 +4,7 @@ const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
 const mongoose = require('mongoose')
+const apiRoutes = require('./routes/api')
 
 
 
@@ -35,6 +36,7 @@ configViewEngine(app);
 
 //khai báo routes
 app.use('/', webRoutes)
+app.use('/v1/api', apiRoutes)
   // app.use('/v1', webRoutes)
   // app.use('/v2', webRoutes)
 

@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connection = require('../config/database') //import connection mysql
 const { getAllUsers, getUserById, updateUser, deleteUser, createUser } = require('../services/CRUDServices')
 const User = require('../models/Users')
 
@@ -26,7 +26,7 @@ const getHomepage = async (req, res) => {
 
   //call listUser from service
   let results = await getAllUsers();
-  console.log(">>> check data results: ", results)
+  // console.log(">>> check data results: ", results)
   //let results = []
 
   return res.render('home.ejs', { listUsers: results }) // đưa dữ liệu vào trong file ejs
