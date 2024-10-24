@@ -4,6 +4,7 @@ const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
 const apiRoutes = require('./routes/api')
+const api2Routes = require('./routes/api2')
 const fileUpload = require('express-fileupload');
 
 
@@ -38,8 +39,10 @@ configViewEngine(app);
 
 //khai báo routes
 app.use('/', webRoutes)
+// routes for api
 app.use('/v1/api', apiRoutes)
-  // app.use('/v1', webRoutes)
+// routes for api
+app.use('/v2/api', api2Routes)
   // app.use('/v2', webRoutes)
 
 

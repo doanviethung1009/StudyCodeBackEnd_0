@@ -1,5 +1,8 @@
 
 const { getUsersService, createUserService, updateUserService, deleteUserService } = require('../services/apiServices')
+const { uploadSingleFileService, uploadMultipleFilesService } = require("../services/fileServices")
+const { uploadNewMultipleFilesService } = require("../services/fileService2")
+
 
 const getUsers = async (req, res) => {
     try {
@@ -73,4 +76,69 @@ const deleteUserAPI = async (req, res) => {
     }
 }
 
-module.exports = { getUsers, createUser, editUserAPI, deleteUserAPI }
+const postUploadFileAPI = async (req, res) => {
+    // res.send('test')
+    try {
+        // res.send('test success')
+        // console.log(">> check req.files", req.files)
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(500).send('No files were uploaded.');
+        } else {
+            let message = await uploadSingleFileService(req.files.image);
+            return res.status(200).json({ message })
+        }
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+
+}
+
+const postUploadMultiAPI = async (req, res) => {
+    // res.send('abc')
+    // console.log(">> check req.files", req.files.image)
+    try {
+        // res.send('test success')
+        // console.log(">> check req.files", req.files)
+        if (!req.files || Object.keys(req.files.image).length === 0) {
+            return res.status(500).send('No files were uploaded.');
+        } else {
+            let message = await uploadMultipleFilesService(req.files.image);
+            return res.status(200).json({ message })
+
+        }
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+}
+
+const postNewUploadMultiAPI = async (req, res) => {
+    // res.send('abc')
+    // console.log(">> check req.files", req.files.image)
+    try {
+        // res.send('test success')
+        // console.log(">> check req.files", req.files)
+        if (!req.files || Object.keys(req.files.image).length === 0) {
+            return res.status(500).send('No files were uploaded.');
+        } else {
+            let message = await uploadNewMultipleFilesService(req.files.image);
+            return res.status(200).json({ message })
+
+        }
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+}
+
+module.exports = { getUsers, createUser, editUserAPI, deleteUserAPI, postUploadFileAPI, postUploadMultiAPI, postNewUploadMultiAPI }
