@@ -1,5 +1,5 @@
 
-const { getUsersService, createUserService, updateUserService } = require('../services/apiServices')
+const { getUsersService, createUserService, updateUserService, deleteUserService } = require('../services/apiServices')
 
 const getUsers = async (req, res) => {
     try {
@@ -61,6 +61,16 @@ const editUserAPI = async (req, res) => {
     }
 }
 
+const deleteUserAPI = async (req, res) => {
+    try {
+        let message = await deleteUserService(req.body._id)
+        return res.status(200).json({ message })
+    } catch (e) {
+        res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+}
 
-
-module.exports = { getUsers, createUser, editUserAPI }
+module.exports = { getUsers, createUser, editUserAPI, deleteUserAPI }

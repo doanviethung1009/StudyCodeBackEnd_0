@@ -76,4 +76,23 @@ const updateUserService = (user) => {
         }
     })
 }
-module.exports = { getUsersService, createUserService, updateUserService }
+
+const deleteUserService = (_id) => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let userDelete = await User.deleteOne({ _id: _id }).exec()
+            // let userDelete = await User.findByIdAndDelete({ _id: _id }).exec()
+            resolve({
+                errCode: 0,
+                data: userDelete,
+                errMessage: "Delete user successfully"
+            })
+        }
+        catch (err) {
+            reject(err) // Reject the promise with the error
+        }
+    })
+}
+
+
+module.exports = { getUsersService, createUserService, updateUserService, deleteUserService }
