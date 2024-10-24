@@ -1,9 +1,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const uploadSingleFileService = async (fileObject) => {
+const uploadSingleFileService = async (fileObject, type) => {
     // set up dir to save file in server
-    let cusPath = "../public/images/upload"
+    let cusPath = `../public/images/${type}`
 
 
 
@@ -23,11 +23,11 @@ const uploadSingleFileService = async (fileObject) => {
 
 
     // setup final name
-    let finalName = `image-${baseFileName}-${Date.now()}${typeExtName}` // ` is backsick: dùng để nối chuỗi
+    let finalName = `${type}-${baseFileName}-${Date.now()}${typeExtName}` // ` is backsick: dùng để nối chuỗi
 
     // setup upload path with final name
     let uploadPath = setPath + '/' + finalName;
-    console.log(uploadPath)
+    // console.log(uploadPath)
     // Use the mv() method to place the file somewhere on your server
     // promise: try{}catch(e){} or .then{}.catch{}
     try {
@@ -37,7 +37,7 @@ const uploadSingleFileService = async (fileObject) => {
             message: 'File uploaded!',
             data: {
                 path: uploadPath,
-                name: fileObject.name,
+                name: finalName,
                 mimetype: fileObject.mimetype,
                 size: fileObject.size
             }
