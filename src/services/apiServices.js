@@ -15,9 +15,7 @@ const getUsersService = () => {
             // })
 
             let users = await User.find().exec()
-                .then(result => {
-                    console.log('>>>> test ', result);
-                });
+
             resolve(users)
         }
         catch (err) {
@@ -61,4 +59,21 @@ const createUserService = (user) => {
         //     });
     })
 }
-module.exports = { getUsersService, createUserService }
+
+const updateUserService = (user) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // let userUpdate = await User.updateOne(user._id, user, { new: true })
+            let userUpdate = await User.findByIdAndUpdate(user._id, user, { new: true })
+            resolve({
+                errCode: 0,
+                data: userUpdate,
+                errMessage: "Update user successfully"
+            })
+        }
+        catch (err) {
+            reject(err) // Reject the promise with the error
+        }
+    })
+}
+module.exports = { getUsersService, createUserService, updateUserService }

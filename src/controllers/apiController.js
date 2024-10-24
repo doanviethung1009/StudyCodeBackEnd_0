@@ -1,12 +1,12 @@
 
-const { getUsersService, createUserService } = require('../services/apiServices')
+const { getUsersService, createUserService, updateUserService } = require('../services/apiServices')
 
 const getUsers = async (req, res) => {
     try {
-        let users = await getUsersService();
+        let message = await getUsersService();
         res.status(200).json({
             errCode: 0,
-            data: users
+            data: message
         })
     } catch (e) {
         res.status(200).json({
@@ -38,7 +38,29 @@ const createUser = async (req, res) => {
             errMessage: 'Error from server'
         })
     }
-
 }
 
-module.exports = { getUsers, createUser }
+
+const editUserAPI = async (req, res) => {
+
+    try {
+        let { email, name, city } = req.body;
+        if (!email || !name || !city) {
+            return res.status(200).json({
+                errCode: 1,
+                errMessage: 'Missing required parameters'
+            })
+        }
+        let message = await updateUserService(req.body);
+        return res.status(200).json({ message })
+    } catch (e) {
+        res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+}
+
+
+
+module.exports = { getUsers, createUser, editUserAPI }
