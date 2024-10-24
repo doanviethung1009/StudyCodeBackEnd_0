@@ -1,4 +1,4 @@
-const { createNewCustomerService, createManyCustomersService } = require("../services/customerServices");
+const { createNewCustomerService, createManyCustomersService, getAllDataCustomerService } = require("../services/customerServices");
 const { uploadSingleFileService } = require("../services/fileService2")
 
 
@@ -10,7 +10,7 @@ module.exports = {
         let imageName = ""
         try {
             if (!name || !email || !phone || !address || !description) {
-                reject("Missing required parameters")
+                res.status(200).json({ error: "Missing required parameters" })
             } else {
                 if (!req.files || Object.keys(req.files).length === 0) {
                     //do nothing
@@ -58,8 +58,29 @@ module.exports = {
                 error: JSON.stringify(e)
             })
         }
-
         // return res.send("test post list customer");
+    },
+
+    getAllDataCustomerAPI: async (req, res) => {
+        //get all data customer
+        try {
+            let message = await getAllDataCustomerService();
+            return res.status(200).json({
+                message
+            })
+        } catch (e) {
+            console.log(e)
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+                data: [],
+                error: JSON.stringify(e)
+            })
+        }
+        return res.send("test get all data customer");
+
+
     }
+
 
 }

@@ -49,5 +49,25 @@ module.exports = {
                 })
             }
         })
+    },
+
+    getAllDataCustomerService: () => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let data = await Customer.find({}).exec()
+                resolve({
+                    errCode: 0,
+                    errMessage: "OK",
+                    data: data,
+                })
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
+
+
+
+
+
 }
