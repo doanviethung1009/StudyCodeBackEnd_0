@@ -3,8 +3,8 @@ const express = require('express') //import express
 const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
-const mongoose = require('mongoose')
 const apiRoutes = require('./routes/api')
+const fileUpload = require('express-fileupload');
 
 
 
@@ -17,6 +17,8 @@ app.use(express.urlencoded({ extended: true })) // for form data
 
 // console.log('check env', process.env)
 
+// config để upload file
+app.use(fileUpload());
 
 //config template ejs engine 
 configViewEngine(app);

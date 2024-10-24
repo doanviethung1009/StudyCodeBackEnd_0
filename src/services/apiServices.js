@@ -1,5 +1,6 @@
 // import connection from "../config/database"
 const User = require("../models/Users")
+const Customer = require("../models/Customers")
 
 
 const getUsersService = () => {
@@ -78,7 +79,7 @@ const updateUserService = (user) => {
 }
 
 const deleteUserService = (_id) => {
-    return new Promise (async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         try {
             let userDelete = await User.deleteOne({ _id: _id }).exec()
             // let userDelete = await User.findByIdAndDelete({ _id: _id }).exec()

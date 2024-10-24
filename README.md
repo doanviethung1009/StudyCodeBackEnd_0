@@ -11,6 +11,8 @@
 
 # document about mysql2: https://sidorares.github.io/node-mysql2/docs 
 
+# npm install --save-exact express-fileupload@1.4.0 upload file to node js
+# document about express-fileupload: https://www.npmjs.com/package/express-fileupload
 
 
 # mongoDB - NoSQL - ODM
