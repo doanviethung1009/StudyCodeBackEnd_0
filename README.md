@@ -32,3 +32,11 @@
 # offset variable is number of item skip => offset = (page - 1) * limit
 # document to use pagination and sort in find queries => https://stackoverflow.com/questions/5539955/how-to-paginate-with-mongoose-in-node-js
 # Pagination using mongoose, express and jade - https://madhums.me/2012/08/20/pagination-using-mongoose-express-and-jade/
+
+# about filter:
+# need to use $regex to filter data and / / such as like % % in sql
+# about regular expression => https://www.w3schools.com/jsref/jsref_obj_regexp.asp or https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+
+# about docuemntation:
+# mongodb => https://docs.mongodb.com/manual/reference/operator/query/regex/
+# mongoose => https://mongoosejs.com/docs/api/query.html#query_Query-find

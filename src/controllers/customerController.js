@@ -68,13 +68,12 @@ module.exports = {
         console.log(">> check req.query", req.query)
         let limit = req.query.limit; //number of list items in the page
         let page = req.query.page; //position of page like [1]/10
-        let name = req.query.name; //search by name
         let message = null;
         //get all data customer
         try {
             if (limit || page || name) {
                 // use + to convert string to number
-                message = await getAllDataCustomerService(+page, +limit, name);
+                message = await getAllDataCustomerService(+page, +limit, req.query);
             } else message = await getAllDataCustomerService();
             return res.status(200).json({
                 message
