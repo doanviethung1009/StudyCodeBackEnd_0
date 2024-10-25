@@ -82,6 +82,21 @@ module.exports = {
             }
 
         })
+    },
+
+    deleteACustomerService: (_id) => {
+        console.log(">>> check _id", _id)
+        return new Promise(async (resolve, reject) => {
+            try {
+                await Customer.deleteById({ _id }).exec()
+                resolve({
+                    errCode: 0,
+                    errMessage: "OK",
+                })
+            } catch (error) {
+                reject(error)
+            }
+        })
     }
 
 }
