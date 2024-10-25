@@ -64,10 +64,24 @@ module.exports = {
                 reject(e)
             }
         })
+    },
+
+
+
+    updateCustomerService: (_id, name, email, phone, address) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                // console.log(">> check data input from controller: ", _id, name, email, phone, address)
+                let customer = await Customer.findByIdAndUpdate({ _id }, { name, email, phone, address }).exec()
+                resolve({
+                    errCode: 0,
+                    errMessage: "OK",
+                })
+            } catch (error) {
+                reject(error)
+            }
+
+        })
     }
-
-
-
-
 
 }

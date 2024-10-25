@@ -1,4 +1,5 @@
-const { createNewCustomerService, createManyCustomersService, getAllDataCustomerService } = require("../services/customerServices");
+
+const { createNewCustomerService, createManyCustomersService, getAllDataCustomerService, updateCustomerService } = require("../services/customerServices");
 const { uploadSingleFileService } = require("../services/fileService2")
 
 
@@ -77,10 +78,29 @@ module.exports = {
                 error: JSON.stringify(e)
             })
         }
-        return res.send("test get all data customer");
 
+    },
 
+    putUpdateCustomerAPI: async (req, res) => {
+
+        try {
+            let { _id, name, email, phone, address } = req.body;
+            let message = await updateCustomerService(_id, name, email, phone, address);
+            res.status(200).json({
+                message
+            })
+        } catch (e) {
+            res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+                error: JSON.stringify(e)
+            })
+        }
     }
+
+
+
+
 
 
 }
