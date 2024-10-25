@@ -19,6 +19,13 @@
 
 # mongoDB - NoSQL - ODM
 
+# about check file or folder exist in server
+# document https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
+
+# about convert string to number need to input + in front of string
+# use + to convert string to number
+# example => message = await getAllDataCustomerService(+limit, +page, name);
+
 # about pagination: 
 # page variable is current page
 # limit variable is number of item in page

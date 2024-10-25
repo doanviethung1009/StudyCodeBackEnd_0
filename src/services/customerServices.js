@@ -51,8 +51,8 @@ module.exports = {
         })
     },
 
-    getAllDataCustomerService: (page, limit) => {
-        console.log(`>> check page: ${page} and limit: ${limit}`)
+    getAllDataCustomerService: (page, limit, name) => {
+        console.log(`>> check page: ${page} and limit: ${limit} and filter by name: ${name}`)
         return new Promise(async (resolve, reject) => {
             try {
                 let data = null;
@@ -64,7 +64,9 @@ module.exports = {
                     //=> example: let offset = (page * limit) - limit;
                     console.log(">> check offset (skip): ", offset)
                     // let offset = page * limit;
-                    data = await Customer.find({}).skip(offset).limit(limit).sort({ name: 'asc' }).exec()
+                    if (name) {
+                        data = await Customer.find({ 'name': { '$regex': '.*' + name + '*.' } }).skip(offset).limit(limit).sort({ name: 'asc' }).exec()
+                    }
 
                 } else data = await Customer.find({}).exec()
 
