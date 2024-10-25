@@ -1,7 +1,7 @@
 
 const { createNewCustomerService, createManyCustomersService,
     getAllDataCustomerService, updateCustomerService,
-    deleteACustomerService } = require("../services/customerServices");
+    deleteACustomerService, deleteBulkDataService } = require("../services/customerServices");
 const { uploadSingleFileService } = require("../services/fileService2")
 
 
@@ -38,7 +38,7 @@ module.exports = {
     },
 
     postListCustomerAPI: async (req, res) => {
-        // console.log(req.body.customer)
+        console.log(req.body.customer)
         let dataArray = []
         try {
             if (req.body || req.body.length > 0) {
@@ -115,8 +115,23 @@ module.exports = {
                 error: JSON.stringify(e)
             })
         }
+    },
+
+    deleteBulkDataAPI: async (req, res) => {
+        // console.log(req.body.customer)
+        let ids = req.body.customer
+        try {
+            let message = await deleteBulkDataService(ids);
+            res.status(200).json({
+                message
+            })
+        } catch (e) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+                error: JSON.stringify(e)
+            })
+        }
     }
-
-
 
 }

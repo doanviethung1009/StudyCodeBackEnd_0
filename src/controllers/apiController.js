@@ -98,7 +98,6 @@ const postUploadFileAPI = async (req, res) => {
 }
 
 const postUploadMultiAPI = async (req, res) => {
-    // res.send('abc')
     // console.log(">> check req.files", req.files.image)
     try {
         // res.send('test success')
@@ -128,7 +127,7 @@ const postNewUploadMultiAPI = async (req, res) => {
         if (!req.files || Object.keys(req.files.image).length === 0) {
             return res.status(500).send('No files were uploaded.');
         } else {
-            let message = await uploadNewMultipleFilesService(req.files.image);
+            let message = await uploadMultipleFilesService(req.files.image);
             return res.status(200).json({ message })
 
         }

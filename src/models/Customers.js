@@ -16,7 +16,13 @@ const customerSchema = new mongoose.Schema({
     description: String,
 },
     {
-        timestamps: true
+        timestamps: true,
+        // add more function to model (static functions)
+        statics: {
+            findByStatic(_id) {
+                return this.find({ name: new RegExp(_id, 'i') });
+            },
+        }
     } // auto create createdAt and updatedAt fields
 );
 // pluggin to soft delete (don't drop data, still only update variable false to validate actived)

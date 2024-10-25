@@ -14,5 +14,7 @@
 # npm install --save-exact express-fileupload@1.4.0 upload file to node js
 # document about express-fileupload: https://www.npmjs.com/package/express-fileupload
 
+# npm install --save-exact mongoose-delete@0.5.4
+# document about mongoose-delete: https://www.npmjs.com/package/mongoose-delete
 
 # mongoDB - NoSQL - ODM

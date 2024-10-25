@@ -88,10 +88,30 @@ module.exports = {
         console.log(">>> check _id", _id)
         return new Promise(async (resolve, reject) => {
             try {
+                // use method static function of model in mongoose
+                let test = await Customer.findByStatic(_id)
+                console.log(">>> check test: ", test)
                 await Customer.deleteById({ _id }).exec()
                 resolve({
                     errCode: 0,
                     errMessage: "OK",
+                })
+            } catch (error) {
+                reject(error)
+            }
+        })
+    },
+
+    deleteBulkDataService: (ids) => {
+        // console.log(">>> check data: ", ids)
+        return new Promise(async (resolve, reject) => {
+            try {
+                // console.log(">>> check data: ", data)
+                let data = await Customer.delete({ _id: { $in: ids } })
+                resolve({
+                    errCode: 0,
+                    errMessage: "OK",
+                    data: data
                 })
             } catch (error) {
                 reject(error)
