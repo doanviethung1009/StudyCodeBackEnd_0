@@ -58,4 +58,17 @@ routerAPI.post('/file', postUploadFileAPI)
 // array
 routerAPI.post('/multi', postUploadMultiAPI)
 
+//test req.query when manny params
+routerAPI.get('/test', (req, res) => {
+    return res.status(200).json({
+        data: req.query
+    })
+})
+//test req.params when 2 params
+routerAPI.get('/test/:_id/:name', (req, res) => {
+    return res.status(200).json({
+        data: req.params
+    })
+})
+
 module.exports = routerAPI; // export router to use in app.js 

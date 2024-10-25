@@ -65,12 +65,19 @@ module.exports = {
     },
 
     getAllDataCustomerAPI: async (req, res) => {
+        console.log(">> check req.query", req.query)
+        let limit = req.query.limit; //position of page like [1]/10
+        let page = req.query.page; //number of list items in the page
+        let message = null;
         //get all data customer
         try {
-            let message = await getAllDataCustomerService();
+            if (limit || page) {
+                message = await getAllDataCustomerService(+limit, +page);
+            } else message = await getAllDataCustomerService();
             return res.status(200).json({
                 message
             })
+
         } catch (e) {
             console.log(e)
             return res.status(200).json({

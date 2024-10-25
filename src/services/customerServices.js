@@ -51,10 +51,23 @@ module.exports = {
         })
     },
 
-    getAllDataCustomerService: () => {
+    getAllDataCustomerService: (page, limit) => {
+        console.log(`>> check page: ${page} and limit: ${limit}`)
         return new Promise(async (resolve, reject) => {
             try {
-                let data = await Customer.find({}).exec()
+                let data = null;
+                //calculate skip (pagination)
+                if (page || limit) {
+                    //offset is item which will be skipped in array
+                    //math in code first * / after + - 
+                    let offset = (page - 1) * limit;
+                    //=> example: let offset = (page * limit) - limit;
+                    console.log(">> check offset (skip): ", offset)
+                    // let offset = page * limit;
+                    data = await Customer.find({}).skip(offset).limit(limit).sort({ name: 'asc' }).exec()
+
+                } else data = await Customer.find({}).exec()
+
                 resolve({
                     errCode: 0,
                     errMessage: "OK",

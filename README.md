@@ -18,3 +18,10 @@
 # document about mongoose-delete: https://www.npmjs.com/package/mongoose-delete
 
 # mongoDB - NoSQL - ODM
+
+# about pagination: 
+# page variable is current page
+# limit variable is number of item in page
+# offset variable is number of item skip => offset = (page - 1) * limit
+# document to use pagination and sort in find queries => https://stackoverflow.com/questions/5539955/how-to-paginate-with-mongoose-in-node-js
+# Pagination using mongoose, express and jade - https://madhums.me/2012/08/20/pagination-using-mongoose-express-and-jade/
