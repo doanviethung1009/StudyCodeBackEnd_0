@@ -40,3 +40,7 @@
 # about docuemntation:
 # mongodb => https://docs.mongodb.com/manual/reference/operator/query/regex/
 # mongoose => https://mongoosejs.com/docs/api/query.html#query_Query-find
+# express => https://expressjs.com/en/4x/api.html#req.query
+# javascript => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+# api-query-params => https://github.com/loris/api-query-params
+# mongoose_delete => https://www.npmjs.com/package/mongoose-delete
