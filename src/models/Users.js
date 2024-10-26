@@ -1,3 +1,4 @@
+const { Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -10,19 +11,20 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password: {
-        type: String,
-        required: false
-    },
-    date: {
-        type: Date,
-        default: Date.now
-    },
     city: {
         type: String,
         required: true
+    },
+    role: {
+        type: String,
+        required: true
     }
-})
+
+},
+    {
+        timestamps: true,
+    }
+)
 
 const User = mongoose.model('User', userSchema);
 

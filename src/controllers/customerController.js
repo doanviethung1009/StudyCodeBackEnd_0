@@ -93,6 +93,7 @@ module.exports = {
 
     putUpdateCustomerAPI: async (req, res) => {
 
+
         try {
             let { _id, name, email, phone, address } = req.body;
             let message = await updateCustomerService(_id, name, email, phone, address);
